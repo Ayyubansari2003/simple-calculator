@@ -1,19 +1,30 @@
-function displayvalue(val){
-
-document.getElementById("display").value= document.getElementById("display").value+val
-}
+let input = document.getElementById('inputbox');
+let buttons = document.querySelectorAll('button');
 
 
-function cleardisplay(){
+let string = "";
+let arr = Array.from(buttons);
+arr.forEach(button => {
+    button.addEventListener('click', (e) =>{
+        if(e.target.innerHTML == '='){
+            string = eval(string);
+            input.value = string;
+        }
 
-    document.getElementById("display").value ="";
-}
+        else if(e.target.innerHTML == 'AC'){
+            string = "";
+            input.value = string;
+        }
+        else if(e.target.innerHTML == 'DEL'){
+            string = string.substring(0, string.length-1);
+            input.value = string;
+        }
 
-function calculate(){
+        else{
+            string += e.target.innerHTML;
+            input.value = string;
+        }
+        
 
-    var userinput =   document.getElementById("display").value
-    var result = eval(userinput);
-
-    document.getElementById("display").value=result;
-}
-alert('hello guys')
+    })
+})
